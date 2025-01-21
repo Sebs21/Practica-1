@@ -9,7 +9,7 @@ public class ProcesoDeCriba
 	
 	public ProcesoDeCriba( int num, ArrayList<Integer> criba )
 	{
-		this.num = 2;
+		this.num = num;
 		this.criba = new ArrayList<>();
 	}
 	
@@ -26,15 +26,14 @@ public class ProcesoDeCriba
 			
 			//Los múltiplos nos dan los primos.
 			
-			if ( ind > 2 && ind % 2 == 0 )
+			if ( primos( ind ) )
 			{
-				System.out.print("Primo: " +ind );
+				System.out.println("Primo: " +ind );
 				continue;
 			}
-			
-			if ( factorizable( ind ) )
+			else if ( factorizable( ind ) )
 			{
-				System.out.print("Número factorizable: " +ind );
+				 System.out.println("Número factorizable: " +ind );
 			}
 		}
 		
@@ -55,24 +54,41 @@ public class ProcesoDeCriba
 		for ( int ind = 2; ind <= limite; ind++ )
 		{
 			
-			if ( ind > 2 && ind % 2 == 0 )
+			if ( primos( ind ) )
 			{
-				System.out.print("Primo: " +ind );
-				continue;
+				System.out.println("Primo: " +ind );
 			}
-			
-			if ( factorizable( ind ) )
+			else if ( factorizable( ind ) )
 			{
 				numero.add( ind );
-				System.out.print("Número Factorizable: " +ind );
+				 System.out.println("Número Factorizable: " +ind );
 			}
 			else
 			{
-				System.out.print("No es factorizable: " +ind );
+				 System.out.println("No es factorizable: " +ind );
 			}
 		}
 		
 		return numero;
+		
+	}
+	
+	public boolean primos ( int num )
+	{
+		if ( num <= 1 )
+		{
+			return false;
+		}
+		
+		for ( int ind = 2; ind * ind <= num; ind++ )
+		{
+			if ( num % ind == 0 )
+			{
+				return false;
+			}
+		}
+		
+		return true;
 		
 	}
 	
@@ -89,4 +105,5 @@ public class ProcesoDeCriba
 		return false;
 		
 	}
+
 }
